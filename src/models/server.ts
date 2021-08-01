@@ -1,5 +1,4 @@
-import path from "path";
-import express, {Application} from 'express';
+import express, {Application, Request, Response, NextFunction} from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
@@ -44,8 +43,10 @@ class Server {
         // Carpeta public
         this.app.use(express.static('public'));
 
-        // Folder para almacenar archivos públicos
-        this.app.use('/uploads', express.static(path.resolve('uploads')));
+        // Manejo de errores
+        this.app.use((err: any, req: Request, res: Response, next: NextFunction): Response => {
+            return res.json({error: err.message});
+        })
     }
 
     routes(): void {
