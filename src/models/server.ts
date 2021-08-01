@@ -4,7 +4,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 
 import auth from '../routes/auth';
-//import dbConnection from "../database/config";
+import dbConnection from "../database/config";
 
 class Server {
     private app: Application;
@@ -28,7 +28,7 @@ class Server {
     }
 
     async connectDB(): Promise<void> {
-        // await dbConnection();
+        await dbConnection();
     }
 
     middlewares(): void {
