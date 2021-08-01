@@ -3,14 +3,14 @@ import express, {Application} from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 
-/*import index from '../routes/index';
-import dbConnection from "../database/config";*/
+import auth from '../routes/auth';
+//import dbConnection from "../database/config";
 
 class Server {
     private app: Application;
     private readonly port: string;
     private path = {
-        index: '/api/index'
+        auth: '/api/auth'
     }
 
     constructor() {
@@ -49,7 +49,7 @@ class Server {
     }
 
     routes(): void {
-        //this.app.use(this.path.index, index);
+        this.app.use(this.path.auth, auth);
     }
 
     listen(): void {
