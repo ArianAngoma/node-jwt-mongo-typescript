@@ -7,6 +7,10 @@ import {generateJWT} from "../helpers/generate-jwt";
 export const signUp = async (req: Request, res: Response): Promise<Response> => {
     const {username, email, password} = req.body;
     const user: IUsers = new User({username, email, password});
+
+    // Encriptar password
+    user.password = user.encryptPassword(user.password);
+
     await user.save();
 
     // Generar JWT
