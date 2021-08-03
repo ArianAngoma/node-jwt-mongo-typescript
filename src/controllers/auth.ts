@@ -37,5 +37,6 @@ export const signIn = async (req: Request, res: Response): Promise<Response> => 
 }
 
 export const profile = async (req: Request, res: Response): Promise<Response> => {
-    return res.json('Hola');
+    const {_id, username, email} = req.user;
+    return res.json({id: _id, username, email});
 }
